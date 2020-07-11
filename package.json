@@ -1,0 +1,20 @@
+{
+  "name": "track-apple-location",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src",
+    "start:dev": "nodemon ./src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apple-icloud": "git+https://github.com/MauriceConrad/iCloud-API.git",
+    "mongodb": "^3.5.9",
+    "nodemon": "^2.0.4",
+    "prompt": "^1.0.0"
+  }
+}

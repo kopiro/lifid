@@ -1,0 +1,39 @@
+version: "3"
+
+networks:
+  proxy:
+    external: true
+  internal:
+
+volumes:
+  app-data:
+
+services:
+  app:
+    image: kopiro/lifid
+    build: .
+    entrypoint: ["npm", "run", "start:dev"]
+    networks:
+      - proxy
+      - internal
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=lifid.kopiro.me
+      - LETSENCRYPT_HOST=lifid.kopiro.me
+    volumes:
+      - ~/.drive/ProjectData/lifid/app-data:/data
+      - ./src:/usr/app/src
+    ports:
+      - 8080:8080
+
+  db:
+    image: mongo
+    restart: unless-stopped
+    networks:
+      - internal
+    env_file: .env
+    volumes:
+      - ~/.drive/ProjectData/lifid/db-data:/data/db
+    ports:
+      - 27017:27017
